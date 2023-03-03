@@ -23,6 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO tb_test (name) VALUES ('$name')";
     if ($conn->query($sql) === TRUE) {
         echo "New name added successfully <br>";
+        // Use PRG to redirect to the same page
+        header("Location: " . $_SERVER["PHP_SELF"]);
+        exit();
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
