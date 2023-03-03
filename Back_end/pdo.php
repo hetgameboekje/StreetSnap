@@ -11,13 +11,24 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check the connection
 if ($conn->connect_error) {
-    echo "Database is not connected";
-}
-else {
-    echo "Connected to database! <br>";
+    die("Connection failed: " . $conn->connect_error);
 }
 
+// Check if form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the name input from the form
+    $name = $_POST["name"];
+    
+    // Insert the new name into the tb_test table
+    $sql = "INSERT INTO tb_test (name) VALUES ('$name')";
+    if ($conn->query($sql) === TRUE) {
+        echo "New name added successfully <br>";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
 
+// Select all rows from the tb_test table
 $sql = "SELECT * FROM tb_test";
 $result = $conn->query($sql);
 
@@ -34,17 +45,10 @@ if ($result->num_rows > 0) {
 // Close the connection
 $conn->close();
 
-
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    hoi
-</body>
-</html>
+
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <input type="submit" value="Add">
+</form>
