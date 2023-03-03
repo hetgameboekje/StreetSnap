@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend page</title>
+</head>
+<body>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required> 
+    <input type="submit" value="Add">
+</form>
+</body>
+</html>
+
 <?php
 
 // Set the database credentials
@@ -30,10 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
-
-// Select all rows from the tb_test table
-$sql = "SELECT * FROM tb_test";
+$sql = "SELECT * FROM tb_test ORDER BY id DESC";
 $result = $conn->query($sql);
+// Select all rows from the tb_test table
+
 
 // Check if any rows were returned
 if ($result->num_rows > 0) {
@@ -49,20 +66,4 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Backend page</title>
-</head>
-<body>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required> 
-    <input type="submit" value="Add">
-</form>
-</body>
-</html>
 
