@@ -11,10 +11,10 @@
 
 		
 		private static function dbConnect() {
-            $dbhost		= "localhost";
-            $dbname     = "db_horeca";
-			$dbuser     = "admin";
-			$dbpass     = 'qwerty';
+            $dbhost		= "localhost:3307";
+            $dbname     = "test_db";
+			$dbuser     = "timo";
+			$dbpass     = 'timo';
             $conn		= "";             // connection string
             $pdo		= "";             // handler
             $charset 	= 'utf8mb4';
