@@ -1,32 +1,41 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    
-    // Create a new PDO object
-    $dsn = 'mysql:host=localhost;dbname=test_db';
-    $username = 'timo';
-    $password = 'timo';
-    
-    try {
-        $pdo = new PDO($dsn, $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        // Prepare the SQL statement
-        $stmt = $pdo->prepare("INSERT INTO tb_test (name) VALUES (:name)");
-        
-        // Bind parameters
-        $stmt->bindParam(':name', $name);
-        
-        // Execute the statement
-        $stmt->execute();
-        
-        echo "Data inserted successfully.";
-    } catch(PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-}
-?>
 
+// Set the database credentials
+$servername = "localhost:3306";
+$username = "timo";
+$password = "timo";
+$dbname = "test_db";
+
+// Create a database connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    echo "Database is not connected";
+}
+else {
+    echo "Connected to database! <br>";
+}
+
+
+$sql = "SELECT * FROM tb_test";
+$result = $conn->query($sql);
+
+// Check if any rows were returned
+if ($result->num_rows > 0) {
+    // Output the data for each row
+    while ($row = $result->fetch_assoc()) {
+        echo "ID: " . $row["id"] . " - Name: " . $row["name"] . "<br>";
+    }
+} else {
+    echo "No results found";
+}
+
+// Close the connection
+$conn->close();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,9 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Document</title>
 </head>
 <body>
-    <form method="post">
-        <input type="text" name="name">
-        <button type="submit">Submit deez nuts</button>
-    </form>
+    hoi
 </body>
 </html>
