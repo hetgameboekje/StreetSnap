@@ -60,7 +60,7 @@ $conn->close();
 <body>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name">
+    <input type="text" id="name" name="name" required> 
     <input type="submit" value="Add">
 </form>
 </body>
