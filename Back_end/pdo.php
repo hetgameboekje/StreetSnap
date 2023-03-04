@@ -64,7 +64,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // Output the data for each row
     while ($row = $result->fetch_assoc()) {
-        echo "ID: " . $row["id"] . " - Name: " . $row["name"] . " - password = " . $row["password"] . " - image path = " . $row["image_path"] . "<img src='$row[image_path]' alt='' background-color: coral; >". "<br>";
+        echo "ID: " . $row["id"] . " - Name: " . $row["name"] . " - password = " . $row["password"] . " - image path = " . $row["image_path"] . "<img src='$row[image_path]' alt='' height=250px; >". "<br>";
     }
     
 } else {
