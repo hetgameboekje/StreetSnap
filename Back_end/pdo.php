@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Backend page</title>
+    <link rel="stylesheet"href="style.css">
+    
 </head>
 <body>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
@@ -64,7 +66,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // Output the data for each row
     while ($row = $result->fetch_assoc()) {
-        echo "ID: " . $row["id"] . " - Name: " . $row["name"] . " - password = " . $row["password"] . " - image path = " . $row["image_path"] . "<img src='$row[image_path]' alt='' height=250px; >". "<br>";
+        echo "ID: " . $row["id"] . " - Name: " . $row["name"] . " - password = " . $row["password"] . "<br>"."<img src='$row[image_path]' alt='Alt text unknown' ;>". "<br>";
     }
     
 } else {
