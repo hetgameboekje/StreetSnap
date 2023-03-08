@@ -11,9 +11,9 @@
 <body>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required> 
-    <input type="text" id="password" name="password" required>
-    <input type="file" name="image">
+    <input type="text" id="name" name="name" required placeholder="First name"> 
+    <input type="text" id="password" name="password" required placeholder="Last name">
+    <input type="file" name="image" >
     <input type="submit" value="Add">
 </form>
 </body>
