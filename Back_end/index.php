@@ -16,8 +16,6 @@
     <input type="file" name="image" >
     <input type="submit" value="Add">
 </form>
-</body>
-</html>
 
 <?php
 
@@ -45,16 +43,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
+
 $sql = "SELECT * FROM tb_test ORDER BY id DESC";
 $result = $conn->query($sql);
-// Select all rows from the tb_test table
-
 
 // Check if any rows were returned
 if ($result->num_rows > 0) {
     // Output the data for each row
     while ($row = $result->fetch_assoc()) {
-        echo "ID: " . $row["id"] . " - Name: " . $row["name"] . " - password = " . $row["password"] ."<br> <button>".$row["id"]."</button>". "<br>"."<img src='$row[image_path]' alt='Alt text unknown' ;>". "<br>" ;
+        echo "ID: " . $row["id"] . " - Name: " . $row["name"] . " - password = " . $row["password"] ."<br>";
+        echo "<button onclick=\"showInfo(" . $row["id"] . ")\">More info</button>";
+        echo "<div id=\"info-" . $row["id"] . "\" style=\"display: none;\">";
+        echo "<img src='" . $row["image_path"] . "' alt='Alt text unknown'><br>";
+        // Display additional information about the selected row here
+        echo "</div><br>";
     }
     
 } else {
@@ -65,3 +67,17 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 ?>
+
+<script>
+function showInfo(id) {
+    var div = document.getElementById("info-" + id);
+    if (div.style.display === "none") {
+        div.style.display = "block";
+    } else {
+        div.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
