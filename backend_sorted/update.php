@@ -8,7 +8,7 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "UPDATE MyGuests SET lastname='Doe' WHERE id=2";
+$sql = "UPDATE tb_name SET 'name='$name' WHERE id=$id";
 
 if (mysqli_query($conn, $sql)) {
   echo "Record updated successfully";
@@ -19,5 +19,4 @@ if (mysqli_query($conn, $sql)) {
 mysqli_close($conn);
 }
     
-
 ?>
