@@ -1,6 +1,4 @@
-<?php
-    require_once('iniset.php');
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +27,7 @@
 include_once 'pdo.php';
 
 // Check if form was submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['frmInsertUser']) ) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the name input from the form
     $name = $_POST["name"];
     $password = $_POST["password"];
@@ -40,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['frmInsertUser']) ) {
     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 
     // Insert the new name into the tb_test table
-    $sql = "INSERT INTO tb_test (name, password, image_path) VALUES ('$name', '$password', '$target_file')";
+    $sql = "INSERT INTO tb_user (name, password, image_path) VALUES ('$name', '$password', '$target_file')";
     if ($conn->query($sql) === TRUE) {
         echo "New name added successfully <br>";
         // Use PRG to redirect to the same page
@@ -50,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['frmInsertUser']) ) {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
-$sql = "SELECT * FROM tb_test ORDER BY id DESC";
+$sql = "SELECT * FROM tb_user ORDER BY id DESC";
 $result = $conn->query($sql);
 // Select all rows from the tb_test table
 

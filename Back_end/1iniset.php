@@ -1,6 +1,6 @@
 <?php
 
-    phpinfo();die;
+    
 
     $ipUser = $_SERVER['REMOTE_ADDR'];
 
