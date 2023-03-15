@@ -2,15 +2,14 @@
 
 function deletefunction($id) {
     // Create a database connection object
-    $conn = new mysqli("localhost:3306", "timo", "timo", "test_db");
-
+    require_once 'pdo.php';
     // Check if the connection is successful
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
     // Prepare the SQL query
-    $sql = "DELETE FROM tb_test WHERE id = $id";
+    $sql = "DELETE FROM tb_test WHERE id = 3";
 
     // Execute the query
     if ($conn->query($sql) === TRUE) {
