@@ -18,7 +18,8 @@ if ($result->num_rows > 0) {
         echo "Id :" . $id . "<br>";
         echo "Name :" . $name . "<br>";
         echo "Password :" . $password . "<br>";
-        echo "Photo: <br>" . "<img src='".$image_path . "' alt='Alt text unknown'>" . "<br>";
+        echo "Photo: <br>" . "<img src='".$image_path . "' alt='Alt text unknown'>" . "<br>" .
+        "<button><a href='delete.php?id=".$id."'>Delete</a></button><br>";
 
         #echo "<h2>". $id . "</h2>" . "ID: " . $row["id"] . " - Name: " . $row["name"] . " - password = " . $row["password"] ."<br> <button>".$row["id"]."</button>". "<br>"."<img src='$row[image_path]' alt='Alt text unknown' ;>"  ;
         
