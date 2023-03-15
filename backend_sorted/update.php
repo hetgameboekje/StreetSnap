@@ -1,11 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "timo";
-$password = "timo";
-$dbname = "db_test";
+require 'pdo.php';
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
 if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
@@ -20,4 +17,7 @@ if (mysqli_query($conn, $sql)) {
 }
 
 mysqli_close($conn);
+}
+    
+
 ?>
