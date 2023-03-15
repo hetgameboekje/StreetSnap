@@ -22,6 +22,7 @@ img {
     <input type="file" name="image" >
     <input type="hidden" name="frmInsertUser" value="frmInsertUser" />
     <input type="submit" value="Add">
+    <hr>
 </form>
 </body>
 </html>
