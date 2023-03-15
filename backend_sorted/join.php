@@ -1,5 +1,7 @@
 <?php
 require 'pdo.php';
+$id = "";
+echo $id . "<br>";
 if(isset($_GET['id'])){
     $id = $_GET['id'];
 
@@ -8,8 +10,8 @@ if(isset($_GET['id'])){
     $sql="SELECT tb_user.id, tb_user.name tb_comment.id , tb_comment.comment FROM tb_user, tb_comment WHERE tb_user.id=tb_comment.id ORDER BY tb_user.id" ;
 
 }
+echo $id . "<br>";
 require_once 'pdo.php';
-$id = 6; // Replace with the id value you want to retrieve
 
 $sql = "SELECT * FROM tb_user WHERE id = $id";
 $result = $conn->query($sql);
@@ -25,8 +27,7 @@ if ($result->num_rows > 0) {
     echo "Id :" . $id . "<br>";
     echo "Name :" . $name . "<br>";
     echo "Password :" . $password . "<br>";
-    echo "Photo: <br>" . "<img src='".$image_path . "' alt='Alt text unknown'>" . "<br>" .
-    "<button><a href='delete.php?id=".$id."'>Delete</a></button><br>";
+    echo "Photo: <br>" . "<img src='".$image_path . "' alt='Alt text unknown' width=600px;'>" . "<br>";
 
 } else {
     echo "No results found";
