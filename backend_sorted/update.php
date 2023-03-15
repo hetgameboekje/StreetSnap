@@ -1,11 +1,11 @@
 <?php
 require 'pdo.php';
-$id = "1";
+$id = "1" . "<br>";
 echo $id . "<br>";
 if(isset($_GET['id'])){
     $id = $_GET['id'];
 
-    echo $id;
+    echo $id . "<br>";
 
     $sql="SELECT tb_user.id, tb_user.name FROM tb_user WHERE tb_user.id=$id" ;
 
