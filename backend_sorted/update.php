@@ -1,46 +1,37 @@
 <?php
 require 'pdo.php';
-
-$id="";
-
+$id = "1";
+echo $id . "<br>";
 if(isset($_GET['id'])){
     $id = $_GET['id'];
 
-// Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-$sql = "SELECT tb_name WHERE id=$id";
-echo $_row['name'];
-//$sql = "UPDATE tb_name SET 'name='$name' WHERE id=$id";
+    echo $id;
 
-if (mysqli_query($conn, $sql)) {
-  echo "Record updated successfully";
+    $sql="SELECT tb_user.id, tb_user.name FROM tb_user WHERE tb_user.id=$id" ;
+
+}
+echo $id . "<br>";
+require_once 'pdo.php';
+
+$sql = "SELECT * FROM tb_user WHERE id = $id";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $id = $row["id"];
+    $name = $row["name"];
+    $password = $row["password"];
+    $image_path = $row["image_path"];
+
+    // Output the data for the selected row
+    echo "Id :" . $id . "<br>";
+    echo "Name :" . $name . "<br>";
+    echo "Password :" . $password . "<br>";
+    echo "Photo: <br>" . "<img src='".$image_path . "' alt='Alt text unknown' width=600px;'>" . "<br>";
+
 } else {
-  echo "Error updating record: " . mysqli_error($conn);
+    echo "No results found";
 }
 
-mysqli_close($conn);
-}
-    
+
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required placeholder="First name"> 
-    <input type="text" id="password" name="password" required placeholder="Last name">
-    <input type="file" name="image" >
-    <input type="hidden" name="frmInsertUser" value="frmInsertUser" />
-    <input type="submit" value="Add">
-</form>
-</body>
-</html>
