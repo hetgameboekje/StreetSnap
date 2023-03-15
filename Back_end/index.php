@@ -1,3 +1,7 @@
+<?php
+    require_once('iniset.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +18,7 @@
     <input type="text" id="name" name="name" required placeholder="First name"> 
     <input type="text" id="password" name="password" required placeholder="Last name">
     <input type="file" name="image" >
+    <input type="hidden" name="frmInsertUser" value="frmInsertUser" />
     <input type="submit" value="Add">
 </form>
 </body>
@@ -24,7 +29,7 @@
 include_once 'pdo.php';
 
 // Check if form was submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['frmInsertUser']) ) {
     // Get the name input from the form
     $name = $_POST["name"];
     $password = $_POST["password"];
