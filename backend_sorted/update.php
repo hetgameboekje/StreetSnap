@@ -1,7 +1,7 @@
 <?php
 require 'pdo.php';
 
-$id=""
+$id="";
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];
@@ -11,7 +11,7 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 $sql = "SELECT tb_name WHERE id=$id";
-echo $_row['name']
+echo $_row['name'];
 //$sql = "UPDATE tb_name SET 'name='$name' WHERE id=$id";
 
 if (mysqli_query($conn, $sql)) {
