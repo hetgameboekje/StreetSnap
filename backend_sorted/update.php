@@ -3,6 +3,7 @@
 require 'pdo.php';
 $id = "";
 $name = "";
+$password = "";
 if(isset($_GET['id'],$_GET['name'],$_GET['password'])){
     $id = $_GET['id'];
     $name = $_GET['name'];
