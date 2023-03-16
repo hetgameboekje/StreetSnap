@@ -7,25 +7,34 @@
 			border: 1px solid black;
 			border-collapse: collapse;
 			padding: 5px;
+            
 		}
+        .pfp {
+            width: 100px;
+            border-radius: 50px;
+        }
 	</style>
 </head>
 <body>
-	<h1>Join Two Tables</h1>
+	
     
 	<?php
     $id = "";
+    $name = "";
+    $password = "";
+    $comment = "";
     if(isset($_GET['id'])){
         $id = $_GET['id'];
     
-        echo $id;
+        echo "User selected with ID " . $id. "<br>";
     }
     
     
 	// Step 1: Define the SQL query
-	$sql = "SELECT *
-    FROM tb_user , tb_comment
-    WHERE tb_user.id = tb_comment.id && $id
+    $sql = "SELECT *
+    FROM tb_user
+    JOIN tb_comment ON tb_user.id = tb_comment.id
+    WHERE tb_user.id = '$id'
     ORDER BY tb_user.id";
 
 	// Step 2: Connect to the database
@@ -37,17 +46,23 @@
 	// Step 4: Display the result in an HTML table
 	if (mysqli_num_rows($result) > 0) {
 		echo "<table>";
-		echo "<tr><th>Order ID</th><th>Customer Name</th><th>Order Date</th></tr>";
+		echo "<tr><th>pfp</th><th>name</th><th>password</th><th>Comment</th></tr>";
 		while ($row = mysqli_fetch_assoc($result)) {
+            $comment =  $row["comment"];
+            $password = $row["password"];
+            $name = $row["name"]; 
+            $img = $row["image_path"];
 			echo "<tr>";
-			echo "<td>" . $row["name"] . "</td>";
-			echo "<td>" . $row["comment"] . "</td>";
-			echo "<td>" . $row["password"] . "</td>";
+            echo "<td><img src='". $img . "' class=pfp></img></td>";
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . $password . "</td>";
+			echo "<td>" . $comment . "</td>";
 			echo "</tr>";
+            
 		}
 		echo "</table>";
 	} else {
-		echo "No results found.";
+		echo "No comments found on user with ID:  " . $id;
 	}
 
 	// Step 5: Close the database connection
