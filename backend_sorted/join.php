@@ -1,37 +1,48 @@
-<?php
-require 'pdo.php';
-$id = "";
-echo $id . "<br>";
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Join Two Tables</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 5px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Join Two Tables</h1>
+	<?php
+	// Step 1: Define the SQL query
+	$sql = "SELECT *
+    FROM tb_user , tb_comment
+    WHERE tb_user.id = tb_comment.id && 18
+    ORDER BY tb_user.id";
 
-    echo $id;
+	// Step 2: Connect to the database
+    require_once 'pdo.php';
 
-    $sql="SELECT tb_user.id, tb_user.name tb_comment.id , tb_comment.comment FROM tb_user, tb_comment WHERE tb_user.id=tb_comment.id ORDER BY tb_user.id" ;
+	// Step 3: Execute the SQL query
+	$result = mysqli_query($conn, $sql);
 
-}
-echo $id . "<br>";
-require_once 'pdo.php';
+	// Step 4: Display the result in an HTML table
+	if (mysqli_num_rows($result) > 0) {
+		echo "<table>";
+		echo "<tr><th>Order ID</th><th>Customer Name</th><th>Order Date</th></tr>";
+		while ($row = mysqli_fetch_assoc($result)) {
+			echo "<tr>";
+			echo "<td>" . $row["name"] . "</td>";
+			echo "<td>" . $row["comment"] . "</td>";
+			echo "<td>" . $row["password"] . "</td>";
+			echo "</tr>";
+		}
+		echo "</table>";
+	} else {
+		echo "No results found.";
+	}
 
-$sql = "SELECT * FROM tb_user WHERE id = $id";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $id = $row["id"];
-    $name = $row["name"];
-    $password = $row["password"];
-    $image_path = $row["image_path"];
-
-    // Output the data for the selected row
-    echo "Id :" . $id . "<br>";
-    echo "Name :" . $name . "<br>";
-    echo "Password :" . $password . "<br>";
-    echo "Photo: <br>" . "<img src='".$image_path . "' alt='Alt text unknown' width=600px;'>" . "<br>";
-
-} else {
-    echo "No results found";
-}
-
-
-?>
+	// Step 5: Close the database connection
+	mysqli_close($conn);
+	?>
+</body>
+</html>
