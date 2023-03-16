@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the name input from the form
     $id = $_POST["id"];
     $comment = $_POST["comment"];
+    header("Location:index.php");
 
 
     // Insert the new name into the tb_test table
@@ -23,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
+    
 }
 ?>
 
