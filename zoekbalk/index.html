@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simpele zoekbalk</title>
+	<style>
+		.search-box {
+			display: inline-block;
+			position: relative;
+			height: 40px;
+			margin: 20px 0;
+		}
+		.search-box input[type="text"] {
+			height: 100%;
+			width: 300px;
+			padding: 0 10px;
+			border: none;
+			border-radius: 20px;
+			box-shadow: 0 0 5px rgba(0,0,0,0.5);
+			outline: none;
+		}
+		.search-box button {
+			position: absolute;
+			top: 0;
+			right: 0;
+			height: 40px;
+			width: 60px;
+			background-color: #3498db;
+			color: #fff;
+			border: none;
+			border-radius: 0 20px 20px 0;
+			cursor: pointer;
+			font-size: 16px;
+			transition: all 0.3s ease-in-out;
+		}
+		.search-box button:hover {
+			background-color: #2980b9;
+		}
+	</style>
+</head>
+<body>
+	<div class="search-box">
+		<input type="text" placeholder="Zoeken...">
+		<button>Zoeken</button>
+	</div>
+</body>
+</html>

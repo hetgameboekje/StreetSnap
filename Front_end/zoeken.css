@@ -6,7 +6,7 @@
 .banner{
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(jeans.jpeg);
+    background-image: linear-gradient(rgb(0, 27, 48),rgba(0,0,0,0.75));
     background-size: cover;
     background-position: center;
 }
@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: sticky;
+    position: fixed;
 }
 .navbar ul li{
     top: 100px;
